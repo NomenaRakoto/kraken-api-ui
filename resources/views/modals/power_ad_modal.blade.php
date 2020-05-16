@@ -10,7 +10,7 @@
         </div>
         <div class="modal-body">
           <div class="form-group">
-              <input type="hidden" name="kraken_id" class="kraken_id" value="{{$currentKraken->getId()}}">
+              <input type="hidden" name="kraken_id" class="kraken_id" @if($currentKraken) value="{{$currentKraken->getId()}}" @endif>
               <select class="custom-select mr-sm-2" name="name" id="id">
                 </option>
                 <option value="{{__('texts.plague')}}">

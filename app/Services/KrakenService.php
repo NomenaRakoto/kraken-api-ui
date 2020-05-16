@@ -111,4 +111,11 @@ class KrakenService extends BaseService
          */
         return 0;
     }
+
+    public function getCurrentKraken($krakens)
+    {
+        if(count($krakens) > 0) {
+            return $krakens[$this->getCurrentKrakenIndex()];
+        }
+    }
 }

@@ -12,7 +12,7 @@ class KrakenAPIConsumer extends APIConsumer {
 	public function __construct()
 	{
 		parent::__construct();
-		$this->baseUri = env('KRAKEN_HOST') . "/api/kraken";
+		$this->baseUri = config('kraken.kraken_host') . "/api/kraken";
 		$this->authenticate();
 	}
 
@@ -46,6 +46,7 @@ class KrakenAPIConsumer extends APIConsumer {
 	private function buildHeader()
 	{
 		$header = [
+			'Content-Length: 0',
 			'Accept:application/json',
 		    'Content-Type: application/json; charset=utf-8',
 		    'X-Requested-With: XMLHttpRequest'

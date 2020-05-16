@@ -13,5 +13,6 @@ return [
      */
     "nb_max_tentacle" => 8,
     "api_user" => "kraken@gmail.com",
-    "api_user_pswd" => "kraken"
+    "api_user_pswd" => "kraken",
+    "kraken_host" => env("KRAKEN_HOST")
 ];

@@ -10,7 +10,7 @@
         </div>
         <div class="modal-body">
           <div class="form-group">
-              <input type="hidden" name="kraken_id" class="kraken_id" value="{{$currentKraken->getId()}}">
+              <input type="hidden" name="kraken_id" class="kraken_id" @if($currentKraken) value="{{$currentKraken->getId()}}" @endif>
               <input type="text" class="form-control text-input" placeholder="{{__('texts.name')}}" name="name" autofocus>
           </div>
         </div>

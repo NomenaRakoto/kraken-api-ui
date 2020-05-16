@@ -26,5 +26,7 @@ return [
     "max_usage" => "Max. Utilisation",
     "required_field" => "Ce champ est obligatoire",
     "required_number_field" => "La valeur de ce champ doit être un nombre",
-    "app_name" => "KRAKEN UI"
+    "app_name" => "KRAKEN UI",
+    "taille_en_m" => "Taille en mètre",
+    "poids_en_tonnes" => "Poids en tonnes",
 ];

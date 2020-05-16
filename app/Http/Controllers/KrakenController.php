@@ -28,7 +28,7 @@ class KrakenController extends Controller
     public function index(Request $request)
     {
     	$krakens = $this->krakenService->all();
-    	$currentKraken = $krakens[$this->krakenService->getCurrentKrakenIndex()];
+    	$currentKraken = $this->krakenService->getCurrentKraken($krakens);
     	return view("home")->with(['krakens' => $krakens, 'currentKraken' => $currentKraken]);
     }
 

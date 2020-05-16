@@ -16,10 +16,10 @@
               <input type="text" class="form-control text-input" placeholder="{{__('texts.age')}}" name="age">
             </div>
             <div class="form-group">
-              <input type="text" class="form-control text-input" placeholder="{{__('texts.taille')}}" name="size">
+              <input type="text" class="form-control text-input" placeholder="{{__('texts.taille_en_m')}}" name="size">
             </div>
             <div class="form-group">
-              <input type="text" class="form-control text-input" placeholder="{{__('texts.poids')}}" name="weight">
+              <input type="text" class="form-control text-input" placeholder="{{__('texts.poids_en_tonnes')}}" name="weight">
             </div>
       </div>
       <div class="modal-footer">
