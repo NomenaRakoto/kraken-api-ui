@@ -56,13 +56,13 @@ $(document).ready(function(){
 
 	$('.kSelect').on('change', function(){
 		var index = $(this).attr('k-index');
-		location.href = "/change_current_kraken/" + index;
+		location.href += "change_current_kraken/" + index;
 	});
 
 	$('#t-delete-btn').on('click', function(){
 		var id = $(this).attr("t-id");
 		if(id) {
-			location.href = "/remove_tentacule/" + id;
+			location.href += "remove_tentacule/" + id;
 		} else {
 			alert('Choisissez une tentacule à supprimer');
 		}

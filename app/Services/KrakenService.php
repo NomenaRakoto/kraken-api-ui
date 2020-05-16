@@ -4,6 +4,7 @@ namespace App\Services;
 
 use App\Repositories\KrakenRepository;
 use App\Kraken;
+use Illuminate\Http\Request;
 
 class KrakenService extends BaseService
 {
@@ -17,13 +18,14 @@ class KrakenService extends BaseService
     {
         $this->repo = $krakenRepository;
     }
-
+    
     /**
-     * get all krakens
+     * [all description]
      * @method all
+     * @param  Request $request [description]
      * @return array [description]
      */
-    public function all()
+    public function all(Request $request)
     {
         $result = json_decode($this->repo->all());
         $krakens = [];
@@ -32,6 +34,8 @@ class KrakenService extends BaseService
             foreach ($data as $key => $kraken) {
                 $krakens[] = new Kraken($kraken);
             }
+        } else {
+            $request->session()->flash("error", __('texts.error_connexion_api'));
         }
         return $krakens;
         
@@ -40,60 +44,73 @@ class KrakenService extends BaseService
     /**
      * [createKraken description]
      * @method createKraken
-     * @param  array       $inputs [description]
-     * @return Object               [description]
+     * @param  Request       $request [description]
      */
-    public function createKraken($inputs)
+    public function createKraken(Request $request)
     {
-        $response = json_decode($this->repo->createKraken($inputs));
-        return $response;
+        $result = json_decode($this->repo->createKraken($request->all()));
+        if(isset($result->success) && $result->success) {
+            $request->session()->flash('success', $result->message);
+        } else {
+            $request->session()->flash('error', $result->message);
+        }
     }
 
     /**
      * [addTentacle description]
      * @method addTentacle
-     * @param  array      $inputs [description]
-     * @return Object               [description]
+     * @param  Request      $request [description]
      */
-    public function addTentacle($inputs)
+    public function addTentacle(Request $request)
     {
-        $response = json_decode($this->repo->addTentacle($inputs));
-        return $response;
+        $result = json_decode($this->repo->addTentacle($request->all()));
+        if(isset($result->success) && $result->success) {
+            $request->session()->flash('success', $result->message);
+        } else {
+            $request->session()->flash('error', $result->message);
+        }
     }
 
     /**
      * [addPower description]
      * @method addPower
-     * @param  array   $inputs [description]
-     * @return Object               [description]
+     * @param  Request   $request [description]
      */
-    public function addPower($inputs)
+    public function addPower(Request $request)
     {
-        $response = json_decode($this->repo->addPower($inputs));
-        return $response;
+        $result = json_decode($this->repo->addPower($request->all()));
+        if(isset($result->success) && $result->success) {
+            $request->session()->flash('success', $result->message);
+        } else {
+            $request->session()->flash('error', $result->message);
+        }
     }
 
     /**
      * [deleteTentacle description]
      * @method deleteTentacle
      * @param  int         $id [description]
-     * @return Object             [description]
      */
-    public function deleteTentacle($id)
+    public function deleteTentacle($id, Request $request)
     {
-        $response = json_decode($this->repo->deleteTentacle($id));
-        return $response;
+        $result = json_decode($this->repo->deleteTentacle($id));
+        if(isset($result->success) && $result->success) {
+            $request->session()->flash('success', $result->message);
+        } else {
+            $request->session()->flash('error', $result->message);
+        }
     }
 
     /**
      * [changeCurrentKrakenIndex description]
      * @method changeCurrentKrakenIndex
-     * @param  int                   $index [description]
-     * @return null                          [description]
+     * @param  int                   $index   [description]
+     * @param  Request                  $request [description]
+     * @return null                            [description]
      */
-    public function changeCurrentKrakenIndex($index)
+    public function changeCurrentKrakenIndex($index, Request $request)
     {
-        \Session::put("currentKraken", $index);
+        $request->session()->put("currentKraken", $index);
     }
 
     /**
@@ -112,6 +129,12 @@ class KrakenService extends BaseService
         return 0;
     }
 
+    /**
+     * [getCurrentKraken description]
+     * @method getCurrentKraken
+     * @param  array           $krakens [description]
+     * @return Kraken                    [description]
+     */
     public function getCurrentKraken($krakens)
     {
         if(count($krakens) > 0) {

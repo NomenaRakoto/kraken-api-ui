@@ -29,4 +29,5 @@ return [
     "app_name" => "KRAKEN UI",
     "taille_en_m" => "Taille en mètre",
     "poids_en_tonnes" => "Poids en tonnes",
+    "error_connexion_api" => "Impossible de se connecter à l'api, vérifier l'url s'il vous plaît"
 ];

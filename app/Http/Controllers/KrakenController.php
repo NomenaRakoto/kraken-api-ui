@@ -27,7 +27,7 @@ class KrakenController extends Controller
 	 */
     public function index(Request $request)
     {
-    	$krakens = $this->krakenService->all();
+    	$krakens = $this->krakenService->all($request);
     	$currentKraken = $this->krakenService->getCurrentKraken($krakens);
     	return view("home")->with(['krakens' => $krakens, 'currentKraken' => $currentKraken]);
     }
@@ -41,12 +41,7 @@ class KrakenController extends Controller
      */
     public function createKraken(Request $request)
     {
-    	$result = $this->krakenService->createKraken($request->all());
-    	if(isset($result->success) && $result->success) {
-    		$request->session()->flash('success', $result->message);
-    	} else {
-    		$request->session()->flash('error', $result->message);
-    	}
+    	$this->krakenService->createKraken($request);
     	return redirect()->back();
     }
 
@@ -57,12 +52,7 @@ class KrakenController extends Controller
      */
     public function addTentacle(Request $request)
     {
-    	$result = $this->krakenService->addTentacle($request->all());
-    	if(isset($result->success) && $result->success) {
-    		$request->session()->flash('success', $result->message);
-    	} else {
-    		$request->session()->flash('error', $result->message);
-    	}
+    	$this->krakenService->addTentacle($request);
     	return redirect()->back();
     }
 
@@ -72,12 +62,7 @@ class KrakenController extends Controller
      * @param  Request  $request [description]
      */
     public function addPower(Request $request) {
-    	$result = $this->krakenService->addPower($request->all());
-    	if(isset($result->success) && $result->success) {
-    		$request->session()->flash('success', $result->message);
-    	} else {
-    		$request->session()->flash('error', $result->message);
-    	}
+    	$this->krakenService->addPower($request);
     	return redirect()->back();
     }
 
@@ -89,12 +74,7 @@ class KrakenController extends Controller
      * @return [type]                  [description]
      */
     public function deleteTentacle($id, Request $request) {
-    	$result = $this->krakenService->deleteTentacle($id);
-    	if(isset($result->success) && $result->success) {
-    		$request->session()->flash('success', $result->message);
-    	} else {
-    		$request->session()->flash('error', $result->message);
-    	}
+    	$this->krakenService->deleteTentacle($id, $request);
     	return redirect()->back();
     }
 
@@ -107,7 +87,7 @@ class KrakenController extends Controller
      */
     public function changeCurrent($index, Request $request)
     {
-    	$this->krakenService->changeCurrentKrakenIndex($index);
+    	$this->krakenService->changeCurrentKrakenIndex($index, $request);
     	return redirect()->back();
     }
 }

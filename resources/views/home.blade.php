@@ -35,7 +35,7 @@
 	                			@if(count($krakens) > 0)
 								<button @if(!$currentKraken->isAllowedToAddTentacle()) disabled="" @endif id="addTentacle" type="button" class="custom-button btn btn-primary">
 								{{__('texts.add_tentacle')}}</button>
-								<button id="t-delete-btn" type="button" class="custom-button btn btn-danger">{{__('texts.remove_tentacle')}}</button>
+								<button id="t-delete-btn" delete-url="{{url('/remove_tentacule')}}" type="button" class="custom-button btn btn-danger">{{__('texts.remove_tentacle')}}</button>
 								<button id="addPower" type="button" class="custom-button btn btn-primary" @if(!$currentKraken->isAllowedToAddPower()) disabled="" @endif>{{__('texts.add_power')}}</button>
 								@endif
 	                		</div>
